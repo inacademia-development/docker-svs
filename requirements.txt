@@ -1,0 +1,5 @@
+git+https://github.com/rohe/pyjwkest.git#egg=pyjwkest
+git+https://github.com/rohe/pyoidc.git#egg=pyoidc
+git+https://github.com/rohe/pysaml2.git#egg=pysaml2
+cherrypy==3.6.0
+Babel==1.3
