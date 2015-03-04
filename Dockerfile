@@ -14,8 +14,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY requirements.txt start.sh /tmp/inacademia/
 
+RUN pip install --upgrade pip
 RUN pip install -r /tmp/inacademia/requirements.txt && \
-    pip install git+https://github.com/its-dirg/svs.git#egg=svs
+    pip install git+https://github.com/its-dirg/svs.git@v0.1.0#egg=svs
 
 EXPOSE 8087
 
