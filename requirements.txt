@@ -1,5 +1,5 @@
-git+https://github.com/rohe/pyjwkest.git#egg=pyjwkest
-git+https://github.com/rohe/pyoidc.git#egg=pyoidc
-git+https://github.com/rohe/pysaml2.git#egg=pysaml2
+pyjwkest==0.6.2
+oic==0.7.5
+pysaml2==2.4.0
 cherrypy==3.6.0
 Babel==1.3
