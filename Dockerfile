@@ -16,7 +16,7 @@ COPY requirements.txt start.sh /tmp/inacademia/
 
 RUN pip install --upgrade pip
 RUN pip install -r /tmp/inacademia/requirements.txt && \
-    pip install git+https://github.com/its-dirg/svs.git@v0.1.2#egg=svs
+    pip install git+https://github.com/its-dirg/svs.git@v0.2.0#egg=svs
 
 EXPOSE 8087
 
