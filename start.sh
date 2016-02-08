@@ -16,4 +16,4 @@ if [ -z "${DISCO}" ]; then
     export DISCO="http://localhost/disco"
 fi
 
-inacademia -b ${BASE} --mdx ${MDX} --cdb ${CDB} --disco ${DISCO}
+exec inacademia -b ${BASE} --mdx ${MDX} --cdb ${CDB} --disco ${DISCO}
