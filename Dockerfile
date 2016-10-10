@@ -1,23 +1,9 @@
-FROM ubuntu:14.04
+FROM itsdirg/satosa
 MAINTAINER InAcademia Team, tech@inacademia.org
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    git \
-    python-dev \
-    libffi-dev \
-    python-openssl \
-    python-pip \
-    xmlsec1 \
-    libldap2-dev \
-    libsasl2-dev
+COPY start.sh /tmp/inacademia/
 
-COPY requirements.txt start.sh /tmp/inacademia/
-
-RUN pip install --upgrade pip
-RUN pip install -r /tmp/inacademia/requirements.txt && \
-    pip install git+https://github.com/its-dirg/svs.git@v0.3.1#egg=svs
-
-EXPOSE 8087
+COPY svs-1.0.0-py3-none-any.whl /svs-1.0.0-py3-none-any.whl
+RUN pip3 install /svs-1.0.0-py3-none-any.whl
 
 ENTRYPOINT ["/tmp/inacademia/start.sh"]
