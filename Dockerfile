@@ -1,9 +1,21 @@
-FROM itsdirg/satosa
-MAINTAINER InAcademia Team, tech@inacademia.org
+FROM ubuntu:16.04
 
-COPY start.sh /tmp/inacademia/
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    python3-dev \
+    build-essential \
+    python3-pip \
+    libffi-dev \
+    libssl-dev \
+    xmlsec1 \
+    libyaml-dev
 
-COPY svs-1.0.0-py3-none-any.whl /svs-1.0.0-py3-none-any.whl
-RUN pip3 install /svs-1.0.0-py3-none-any.whl
+RUN pip3 install --upgrade pip setuptools
+RUN pip3 install git+git://github.com/leifj/pysaml2.git#egg=pysaml2
+RUN pip3 install git+git://github.com/jkakavas/svs.git#egg=svs
+RUN pip3 install git+git://github.com/sunet/SATOSA.git#egg=SATOSA
+RUN pip3 install pystache
 
+COPY start.sh /tmp/inacademia/start.sh
+COPY attributemaps /tmp/inacademia/attributemaps
 ENTRYPOINT ["/tmp/inacademia/start.sh"]
