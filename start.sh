@@ -33,8 +33,14 @@ fi
 
 
 # generate metadata for front- (IdP) and back-end (SP) and write it to mounted volume
-
 satosa-saml-metadata proxy_conf.yaml ${DATA_DIR}/metadata.key ${DATA_DIR}/metadata.crt --dir ${METADATA_DIR}
+
+#Add the logserver IP to rsyslog config
+cat>>/etc/rsyslog.d/99-inacademia.conf<<EOF
+\$InputFileName ${DATA_DIR}/audit.log
+*.* @@${SYSLOG_SERVER}:514
+
+EOF
 
 # start the proxy
 if [[ -f https.key && -f https.crt ]]; then # if HTTPS cert is available, use it
