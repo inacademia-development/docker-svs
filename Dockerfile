@@ -12,12 +12,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rsyslog
 RUN apt clean
 
-RUN pip3 install --upgrade pip setuptools
-RUN pip3 install git+git://github.com/rohe/pysaml2.git#egg=pysaml2
-# Use this until we transfer it to GEANT
-RUN pip3 install git+git://github.com/jkakavas/svs.git#egg=svs
-# Use jkakavas/satosa until the custom error handling is merged in satosa
-RUN pip3 install git+git://github.com/jkakavas/SATOSA.git#egg=SATOSA
+
+COPY svs-1.0.0-py3-none-any.whl /svs-1.0.0-py3-none-any.whl
+# Make sure pip is at the latest version
+RUN pip3 install -U pip setuptools
+RUN pip3 install /svs-1.0.0-py3-none-any.whl
 RUN pip3 install pystache
 
 COPY rsyslog.conf /etc/rsyslog.conf
