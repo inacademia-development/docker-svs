@@ -1,4 +1,4 @@
-FROM satosa/satosa
+FROM ubuntu:16.04
 MAINTAINER InAcademia Team, tech@inacademia.org
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -13,11 +13,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rsyslog
 RUN apt clean
 
-
-COPY svs-1.0.1-py3-none-any.whl /svs-1.0.1-py3-none-any.whl
-# Make sure pip is at the latest version
-RUN pip3 install -U pip setuptools
-RUN pip3 install /svs-1.0.1-py3-none-any.whl
+RUN pip3 install --upgrade pip setuptools
+RUN pip3 install git+git://github.com/InAcademia/svs.git#egg=svs
+RUN pip3 install git+git://github.com/InAcademia/SATOSA.git@svs-1.0.1#egg=SATOSA
 RUN pip3 install pystache
 
 COPY rsyslog.conf /etc/rsyslog.conf
