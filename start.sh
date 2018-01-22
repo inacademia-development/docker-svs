@@ -1,4 +1,4 @@
-!/usr/bin/env bash
+#!/usr/bin/env bash
 
 # for Click library to work in satosa-saml-metadata
 export LC_ALL=C.UTF-8
